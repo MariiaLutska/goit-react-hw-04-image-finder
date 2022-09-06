@@ -1,7 +1,6 @@
-import React, { Component} from 'react';
-import { createPortal } from 'react-dom';
+import { Component} from 'react';
+import PropTypes from 'prop-types';
 
-const modalRoot = document.querySelector('modal-root');
 
 export class Modal extends Component {
     componentDidMount() {
@@ -10,31 +9,34 @@ export class Modal extends Component {
     
 
     componentWillUnmount() {
-        console.log('Modal componentWillUnmount');
-
         window.removeEventListener('keydown', this.handleKeyDown);
     };
 
     handleKeyDown = e => {
         if (e.code === 'Escape') {
-            console.log('Нажми ESC');
-
-            this.props.onClose();
+            this.props.closeModal();
         }
     };
 
     handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
-            this.props.onClose();
+            this.props.closeModal();
         }
     };
 
     render() {
-        return createPortal(
-            <div className="Modal__backdrop" onClick={this.handleBackdropClick}>
-                <div className="Modal__content">{this.props.children}</div>
-            </div>,
-            modalRoot,
+        return (
+            <div onClick={this.handleBackdropClick}>
+                <div>
+                    <img src={this.props.largeImage}
+                    alt="choosed foto" />
+                </div>
+            </div>
         );
     }
 }
+
+Modal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  largeImage: PropTypes.string.isRequired,
+};

@@ -11,6 +11,19 @@ import { Box } from './Box';
 
 const perPage = 12;
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    maxWidth: 'calc(100vw - 48px)',
+    maxHeight: 'calc(100vh - 24px)',
+  },
+};
+
 
 export class App extends Component {
   state = {
@@ -99,13 +112,16 @@ export class App extends Component {
        border="normal"
        background="#fff"
      width="100%">
-     <Searchbar onSubmit={this.onSearch} />
+        <Searchbar
+          onSubmit={this.onSearch} />
           {images.length > 0 && (
-            <ImageGallery images={images} onModal={this.openModal} />
+          <ImageGallery
+            images={images}
+            onModal={this.openModal} />
           )}
 
           {showModal && (
-            <Modal largeImage={largeImage} closeModal={this.openModal} />
+            <Modal style={customStyles} largeImage={largeImage} closeModal={this.openModal} />
           )}
 
           {showLoadMore && <MoreButton onShowMore={this.showMore} />}

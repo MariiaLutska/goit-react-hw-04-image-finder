@@ -4,7 +4,10 @@ import { Button } from './Button.styled';
 
 export const MoreButton = ({ onShowMore }) => {
     return (
-        <Box display="flex" justifyContent="center">
+        <Box display="flex"
+            justifyContent="center"
+            alignitems="center"
+        >
             <Button type="button" onClick={onShowMore}>
                 Load More
             </Button>

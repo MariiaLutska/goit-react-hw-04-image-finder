@@ -22,5 +22,6 @@ padding: 8px 16px;
         &:hover,
         &:focus {
             background-color: #303f9f;
+            opacity: 1;
         }
         `

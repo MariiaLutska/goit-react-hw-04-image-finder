@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 // import Notiflix from 'notiflix';
 import { ImSearch } from 'react-icons/im';
@@ -33,7 +34,7 @@ export class Searchbar extends Component {
           position="stiky"
           justifyContent="center"
           display="flex"
-          alignItems="center"
+          alignitems="center"
           paddingTop={15}
           paddingBottom={15}
           backgroundColor="#3f51b5"
@@ -45,8 +46,8 @@ export class Searchbar extends Component {
             </button>
             <input 
               type="text"
-              autocomplete="off"
-              autofocus
+              autoComplete="off"
+              autoFocus
               placeholder="Search images and photos"
               // name="pictureName"
               value={this.state.value}

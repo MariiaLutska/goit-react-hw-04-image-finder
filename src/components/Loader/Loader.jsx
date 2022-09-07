@@ -2,8 +2,8 @@ import { Circles } from 'react-loader-spinner';
 
 export const Loader = () => {
   return (
-    <div>
-      <Circles color='green' height={130} width={130} />
+    <div display="flex" alignItems="center" justifyContent="center" position="fixed" top='50%' left='50%'>
+      <Circles color='blue' height={120} width={120} />
     </div>
   );
 };

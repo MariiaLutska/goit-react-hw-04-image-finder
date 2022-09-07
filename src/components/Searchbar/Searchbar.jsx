@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import Notiflix from 'notiflix';
 import { ImSearch } from 'react-icons/im';
-// import s from './Searchbar.module.css';
+import { Box } from '../Box';
+// import {Button} from '../Button/Button.styled';
 
-
-// const styles = { from: { marginBottom: 20 } };
 
 
 export class Searchbar extends Component {
@@ -14,12 +13,12 @@ export class Searchbar extends Component {
     };
 
     handleChange = e => {
-        this.setState({ value: e.currentTarget.value.toLowerCase() });
-    };
+     this.setState({ value: e.currentTarget.value.toLowerCase() });
+  };
 
     handleSubmit = e => {
       e.preventDefault();
-      const searchValue =this.state.pictureName.trim()
+      const searchValue =this.state.value.trim()
         if (searchValue === '') {
         alert('Введіть імя картинки.')
             return;
@@ -30,11 +29,19 @@ export class Searchbar extends Component {
 
     render() {
       return (
-        <header>
+        <Box as="header"
+          position="stiky"
+          justifyContent="center"
+          display="flex"
+          alignItems="center"
+          paddingTop={15}
+          paddingBottom={15}
+          backgroundColor="#3f51b5"
+        >
           <form onSubmit={this.handleSubmit}>
             <button type="submit" >
-              <ImSearch style={{ marginRight: 8 }} />
-              Search
+              <ImSearch style={{ marginRight: 10 }} />
+              {/* <span>Search</span> */}
             </button>
             <input 
               type="text"
@@ -45,12 +52,12 @@ export class Searchbar extends Component {
               value={this.state.value}
               onChange={this.handleChange}
             />
-        </form>
-          </header>
-            
+          </form>
+        </Box>
         );
     }
 }
+
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };

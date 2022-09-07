@@ -1,15 +1,17 @@
 import PropTypes from "prop-types";
+import { Box } from '../Box';
+import { Button } from './Button.styled';
 
-export const Button = ({ onShowMore }) => {
+export const MoreButton = ({ onShowMore }) => {
     return (
-        <div>
-            <button type="button" onClick={onShowMore}>
+        <Box display="flex" justifyContent="center">
+            <Button type="button" onClick={onShowMore}>
                 Load More
-            </button>
-        </div>
+            </Button>
+        </Box>
     );
 };
 
-Button.propTypes = {
+MoreButton.propTypes = {
   onShowMore: PropTypes.func.isRequired,
 };

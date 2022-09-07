@@ -5,7 +5,7 @@ import * as Scroll from 'react-scroll';
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Modal } from './Modal/Modal';
 import { Loader } from './Loader/Loader';
-import { Button} from './Button/Button';
+import { MoreButton} from './Button/Button';
 import {FetchData} from '../services/API'
 import { Box } from './Box';
 
@@ -89,10 +89,16 @@ export class App extends Component {
 
     const { images, showModal, largeImage, loading, showLoadMore} = this.state;
     return (
-      <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
+      // <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
         
    <Box
-        display="flex">
+        display="flex"
+       flexDirection="column"
+       justifyContent="center"
+       alignItems="stretch"
+       border="normal"
+       background="#fff"
+     width="100%">
      <Searchbar onSubmit={this.onSearch} />
           {images.length > 0 && (
             <ImageGallery images={images} onModal={this.openModal} />
@@ -102,13 +108,13 @@ export class App extends Component {
             <Modal largeImage={largeImage} closeModal={this.openModal} />
           )}
 
-          {showLoadMore && <Button onShowMore={this.showMore} />}
+          {showLoadMore && <MoreButton onShowMore={this.showMore} />}
 
           {loading && <Loader />}
 
 
         </Box>
-        </div>
+        // </div>
     );
   }
 }

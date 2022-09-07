@@ -1,17 +1,18 @@
 // import React, { Component } from 'react';
-import { Box } from '../Box';
+import { Grid } from 'theme-ui';
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 import PropTypes from 'prop-types';
 
 
-
 export const ImageGallery = ({ images, onModal }) => {
   return (
-    <Box color="primary" as="ul">
+    <Grid p={2}
+      width={[260]}
+    gap={2}>
       {images.map(image => (
         <ImageGalleryItem key={image.id} image={image} onModal={onModal} />
       ))}
-    </Box>
+    </Grid>
   );
 };
 

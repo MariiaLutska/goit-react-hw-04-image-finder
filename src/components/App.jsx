@@ -6,7 +6,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Modal } from './Modal/Modal';
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
-import { FetchData } from '../services/Api';
+import { FetchData } from '../services/API';
 
 const perPage = 12;
 

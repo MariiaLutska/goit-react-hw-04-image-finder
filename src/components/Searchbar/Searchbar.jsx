@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 // import Notiflix from 'notiflix';
 import { ImSearch } from 'react-icons/im';
-import { Box } from '../Box';
-// import {Button} from '../Button/Button.styled';
-
-
+import s from './Searchbar.module.css';
 
 export class Searchbar extends Component {
     state = {
@@ -30,33 +26,25 @@ export class Searchbar extends Component {
 
     render() {
       return (
-        <Box as="header"
-          position="stiky"
-          justifyContent="center"
-          display="flex"
-          alignitems="center"
-          paddingTop={15}
-          paddingBottom={15}
-          backgroundColor="#3f51b5"
-        >
-          <form onSubmit={this.handleSubmit}>
-            <button type="submit" >
+       <header className={s.Searchbar}>
+        <form onSubmit={this.handleSubmit} className={s.SearchForm}>
+            <button type="submit" className={s.Button}>
               <ImSearch style={{ marginRight: 10 }} />
               {/* <span>Search</span> */}
             </button>
-            <input 
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              // name="pictureName"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </form>
-        </Box>
-        );
-    }
+            <input
+            className={s.Input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
+        </form>
+      </header>
+    );
+  }
 }
 
 Searchbar.propTypes = {

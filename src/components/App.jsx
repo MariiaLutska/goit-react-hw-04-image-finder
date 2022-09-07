@@ -1,29 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import Notiflix from 'notiflix';
 import * as Scroll from 'react-scroll';
-import { ImageGallery } from "./ImageGallery/ImageGallery";
+import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Modal } from './Modal/Modal';
 import { Loader } from './Loader/Loader';
-import { MoreButton} from './Button/Button';
-import {FetchData} from '../services/API'
-import { Box } from './Box';
+import { Button } from './Button/Button';
+import { FetchData } from '../services/Api';
 
 const perPage = 12;
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    maxWidth: 'calc(100vw - 48px)',
-    maxHeight: 'calc(100vh - 24px)',
-  },
-};
-
 
 export class App extends Component {
   state = {
@@ -40,20 +25,21 @@ export class App extends Component {
     const { page, value, images } = this.state;
     if (prevState.page !== page || prevState.value !== value) {
       this.setState({ loading: true });
-      FetchData(value, page, perPage).then(data => {
-        this.setState(prevState => ({
-          images: [...prevState.images, ...data.hits],
-          loading: false,
-        }));
-        if (data.total > perPage) {
-          this.setState({ showLoadMore: true });
-        } else if (data.total <= images.length + perPage) {
-          this.setState({ showLoadMore: false });
-          Notiflix.Notify.info(
-            "We're sorry, but you've reached the end of search results."
-          )
-        }
-      })
+      FetchData(value, page, perPage)
+        .then(data => {
+          this.setState(prevState => ({
+            images: [...prevState.images, ...data.hits],
+            loading: false,
+          }));
+          if (data.total > perPage) {
+            this.setState({ showLoadMore: true });
+          } else if (data.total <= images.length + perPage) {
+            this.setState({ showLoadMore: false });
+            Notiflix.Notify.info(
+              "We're sorry, but you've reached the end of search results."
+            );
+          }
+        })
         .catch(this.onApiError);
     }
   }
@@ -78,15 +64,12 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
     this.scrollSlowly();
   };
-
   openModal = image => {
     this.setState({ showModal: true, largeImage: image });
   };
-
   closeModal = () => {
     this.setState({ showModal: false });
   };
-
   scrollSlowly = () => {
     Scroll.animateScroll.scrollToBottom({
       duration: 1500,
@@ -97,40 +80,21 @@ export class App extends Component {
     });
   };
 
-
   render() {
+    const { images, showModal, largeImage, loading, showLoadMore } = this.state;
 
-    const { images, showModal, largeImage, loading, showLoadMore} = this.state;
     return (
-      // <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
-        
-   <Box
-        display="flex"
-       flexDirection="column"
-       justifyContent="center"
-       alignItems="stretch"
-       border="normal"
-       background="#fff"
-     width="100%">
-        <Searchbar
-          onSubmit={this.onSearch} />
-          {images.length > 0 && (
-          <ImageGallery
-            images={images}
-            onModal={this.openModal} />
-          )}
-
-          {showModal && (
-            <Modal style={customStyles} largeImage={largeImage} closeModal={this.openModal} />
-          )}
-
-          {showLoadMore && <MoreButton onShowMore={this.showMore} />}
-
-          {loading && <Loader />}
-
-
-        </Box>
-        // </div>
+      <div className="app">
+        <Searchbar onSubmit={this.onSearch} />
+        {images.length > 0 && (
+          <ImageGallery images={images} onModal={this.openModal} />
+        )}
+        {showModal && (
+          <Modal largeImage={largeImage} closeModal={this.closeModal} />
+        )}
+        {showLoadMore && <Button onShowMore={this.showMore} />}
+        {loading && <Loader />}
+      </div>
     );
   }
 }

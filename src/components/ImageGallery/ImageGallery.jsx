@@ -1,21 +1,16 @@
-// import React, { Component } from 'react';
-import { Grid } from 'theme-ui';
 import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
 import PropTypes from 'prop-types';
-
+import s from './ImageGallery.module.css';
 
 export const ImageGallery = ({ images, onModal }) => {
   return (
-    <Grid p={2}
-      width={[260]}
-    gap={2}>
+    <ul className={s.ImageGallery}>
       {images.map(image => (
         <ImageGalleryItem key={image.id} image={image} onModal={onModal} />
       ))}
-    </Grid>
+    </ul>
   );
 };
-
 
 ImageGallery.propTypes = {
   images: PropTypes.arrayOf(

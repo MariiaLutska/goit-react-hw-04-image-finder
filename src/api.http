@@ -1,7 +1,0 @@
-@baseUrl = 'https://pixabay.com/api/'
-
-@apiKey = 28499360-c7f5e1b7bc9940d556e6926b7
-GET {{baseUrl}}/everything?q=cat&apiKey={{apiKey}}
-Content-Type: application/json
-
-

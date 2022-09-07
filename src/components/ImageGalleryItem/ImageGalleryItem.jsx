@@ -1,21 +1,14 @@
-// import React from 'react';
-// import { Box } from '../Box';
-import { Grid, Card, Image } from 'theme-ui';
 import PropTypes from 'prop-types';
+import s from '../ImageGalleryItem/ImageGalleryItem.module.css';
 
 export const ImageGalleryItem = ({ image, onModal }) => {
   const { largeImageURL, webformatURL, tags } = image;
   return (
-    <Grid width={[128, null, 192]}>
-    <Card sx={{ maxWidth: 256,}}>
-      <li  onClick={() => onModal(largeImageURL)}>
-        <Image src={webformatURL} alt={tags} height="260px" width="100%" />
-      </li>
-      </Card>
-      </Grid>
-    );
+    <li className={s.Item} onClick={() => onModal(largeImageURL)}>
+      <img className={s.Image} src={webformatURL} alt={tags} />
+    </li>
+  );
 };
-
 ImageGalleryItem.propTypes = {
   image: PropTypes.shape({
     largeImageURL: PropTypes.string.isRequired,
